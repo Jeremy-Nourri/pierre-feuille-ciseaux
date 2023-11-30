@@ -5,21 +5,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jeu Pierre Feuille ciseaux</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
     <script src="./index.js"></script>
 
 </head>
 
-<body class="bg-gradient-to-r from-indigo-900 to-black">
+<body>
     <header>
         <h1>Pierre Feuille Ciseaux</h1>
     </header>
     <main>
+        <form action="">
 
+
+            <p>Joueur 3 :</p>
+            <label for="avatarUser">Votre pseudo :</label>
+            <input type="text" id="avatarUser">
+
+            <button onsubmit="saveNames()">Enregistrer les choix</button>
+        </form>
 
     </main>
     <footer>
-        
+
     </footer>
 
 </body>
