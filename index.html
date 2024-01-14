@@ -8,24 +8,25 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Teko:wght@500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./reset.css">
+    <link rel="stylesheet" href="./global.css">
+    <link rel="stylesheet" href="./style-index.css">
+
     <script src="./index.js"></script>
 
 </head>
 
 <body>
     <header>
-        <h1>Pierre Feuille Ciseaux</h1>
+        <h1>Pierre ✊ Feuille ✋ Ciseaux ✌️</h1>
     </header>
     <main>
-        <form action="">
-
-
-            <p>Joueur 3 :</p>
-            <label for="avatarUser">Votre pseudo :</label>
-            <input type="text" id="avatarUser">
-
-            <button onsubmit="saveNames()">Enregistrer les choix</button>
+        <p>Bienvenue !</p>
+        <p>Choisissez votre pseudo</p>
+        <form action="" class="index-form">
+            <label for="avatarUser" class="index-form__label"></label>
+            <input type="text" id="avatarUser" class="index-form__input" placeholder="Michel">
+            <button onsubmit="saveNames()">Enregistrer</button>
         </form>
 
     </main>

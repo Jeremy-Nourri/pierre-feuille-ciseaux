@@ -1,0 +1,55 @@
+body {
+  background: linear-gradient(82deg, rgb(4, 2, 47) 0%, rgb(8, 8, 99) 69%, rgba(13,8,148,1) 100%);
+}
+
+button {
+  width: 200px;
+  box-sizing: border-box;
+  padding: 7px;
+  background-color: aliceblue;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+button:hover {
+  opacity: 0.8;
+}
+
+input {
+  width: 200px;
+  box-sizing: border-box;
+  padding: 7px;
+  background-color: aliceblue;
+  border: none;
+  border-radius: 8px;
+}
+
+input:focus {
+  outline-color: #00f;
+  outline-width: 2px;
+  outline-style: solid;
+  box-shadow: 0 0 5px #00f;
+}
+
+header {
+  margin: 30px auto;
+
+  & h1 {
+    font-family: "Teko";
+    text-align: center;
+    color: aliceblue;
+    font-size: 1.6rem;
+  }
+}
+
+main {
+  width: 80vw;
+  height: 80vh;
+  margin: auto;
+  padding: 30px;
+  color: aliceblue;
+  text-align: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
