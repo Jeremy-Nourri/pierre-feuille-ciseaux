@@ -1,5 +1,6 @@
 body {
   background: linear-gradient(82deg, rgb(4, 2, 47) 0%, rgb(8, 8, 99) 69%, rgba(13,8,148,1) 100%);
+  height: 100vh;
 }
 
 button {
@@ -43,13 +44,20 @@ header {
   }
 }
 
+h2 {
+  color: aliceblue;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
 main {
   width: 80vw;
   height: 80vh;
   margin: auto;
   padding: 30px;
   color: aliceblue;
-  text-align: center;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
+
 

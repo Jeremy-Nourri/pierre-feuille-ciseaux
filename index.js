@@ -3,8 +3,8 @@
 const choiceArray = ["pierre", "feuille", "ciseaux"]
 
 class Player {
-    constructor(name) {
-        this.name = name;
+    constructor() {
+        this.nickname = nickname;
         this.choice = "";
         this.score = 0;
     }
@@ -141,10 +141,15 @@ const compareChoice = (userChoice) => {
     }
 }
 
-function saveNames() {
-    user.name = document.getElementById("nameUser").value;
+function saveUserName(event) {
+    event.preventDefault();
+    user.name = document.getElementById("name-user").value;
+    console.log(user.name);
+    localStorage.setItem("UserName", user.name);
+    window.location.href = "game.html";
 }
 
-// user.choice = prompt("nombre")
-
-compareChoice(user.choice)
+function getUserName() {
+    const nickname = localStorage.getItem("userName");
+    return nickname;
+}

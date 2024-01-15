@@ -1,16 +1,24 @@
 main {
-    & p:nth-child(1) {
-        font-size: 1.5rem;
-        font-weight: 600;
-        margin-bottom: 20px;
+    & h2 {
+        text-align: center;
     }
-    & p, label, input, button {
+    & p, ul, label {
         font-size: 0.8rem;
         margin-top: 0.5rem;
+        line-height: 1rem;
+        text-align: left;
     }
+
     & form {
+        margin-top: 1rem;
         display: flex;
         flex-direction: column;
         align-items: center;
+        
+        & input, button {
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+            line-height: 1rem;
+        }
     }
 }

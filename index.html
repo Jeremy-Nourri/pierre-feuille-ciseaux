@@ -21,12 +21,23 @@
         <h1>Pierre ✊ Feuille ✋ Ciseaux ✌️</h1>
     </header>
     <main>
-        <p>Bienvenue !</p>
-        <p>Choisissez votre pseudo</p>
+        <h2>Règles du jeu Pierre-Feuille-Ciseaux<h2>
+            
+        <p>Les trois participants choisissent simultanément l'un des trois éléments : pierre ou feuille ou ciseaux.</p>
+        <p>Les résultats sont déterminés selon les relations mentionnées ci-dessus.</p>
+        <ul>
+            <li>- La pierre casse les ciseaux.</li>
+            <li>- La pierre casse les ciseaux.</li>
+            <li>- Les ciseaux coupent la feuille.</li>
+            <li>- La feuille enveloppe la pierre.</li>
+        </ul>
+        <p>Chaque participant qui choisit un élément qui bat l'élément choisi par un autre participant, remporte 1 point.</p>
+        <p>Le joueur remportant 5 points est déclaré vainqueur de la partie.</p>           
+
         <form action="" class="index-form">
-            <label for="avatarUser" class="index-form__label"></label>
-            <input type="text" id="avatarUser" class="index-form__input" placeholder="Michel">
-            <button onsubmit="saveNames()">Enregistrer</button>
+            <label for="name-user" class="index-form__label">Choisissez votre pseudo</label>
+            <input type="text" id="name-user" class="index-form__input" placeholder="Michel">
+            <button onclick="saveUserName(event)">Enregistrer</button>
         </form>
 
     </main>
