@@ -4,7 +4,7 @@ const choiceArray = ["pierre", "feuille", "ciseaux"]
 
 class Player {
     constructor() {
-        this.nickname = nickname;
+        this.nickname = "";
         this.choice = "";
         this.score = 0;
     }
@@ -143,13 +143,9 @@ const compareChoice = (userChoice) => {
 
 function saveUserName(event) {
     event.preventDefault();
-    user.name = document.getElementById("name-user").value;
-    console.log(user.name);
-    localStorage.setItem("UserName", user.name);
-    window.location.href = "game.html";
+    user.nickname = document.getElementById("name-user").value;
+    console.log(user.nickname);
+    localStorage.setItem("userName", user.nickname);
+    window.location.href = "choice/choice.html";
 }
 
-function getUserName() {
-    const nickname = localStorage.getItem("userName");
-    return nickname;
-}
