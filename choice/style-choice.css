@@ -3,11 +3,13 @@
     margin: auto;
     padding: 20px;
     text-align: center;
-    background-color: rgb(223, 223, 223);
-    color: aliceblue;
+    background-color: rgb(213, 213, 213);
+    color: rgb(223, 226, 228);
     border-radius: 20px;
 
+
     & .container-choice-user__sub {
+        margin-top: 1rem;
         padding: 15px 0;
         & .sub__icon {
             font-size: 5rem;

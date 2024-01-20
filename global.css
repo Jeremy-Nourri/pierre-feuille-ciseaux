@@ -1,3 +1,8 @@
+:root {
+  --primary-text-color: rgb(237, 237, 246);
+  --container-bg-color: rgb(237, 237, 246);
+}
+
 body {
   background: linear-gradient(82deg, rgb(4, 2, 47) 0%, rgb(8, 8, 99) 69%, rgba(13,8,148,1) 100%);
   height: 100vh;
@@ -7,7 +12,7 @@ button {
   width: 200px;
   box-sizing: border-box;
   padding: 7px;
-  background-color: aliceblue;
+  background-color: var(--container-bg-color);
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -21,7 +26,7 @@ input {
   width: 200px;
   box-sizing: border-box;
   padding: 7px;
-  background-color: aliceblue;
+  background-color: var(--container-bg-color);
   border: none;
   border-radius: 8px;
 }
@@ -34,20 +39,20 @@ input:focus {
 }
 
 header {
-  margin: 30px auto;
 
   & h1 {
+    margin-top: 1rem;
     font-family: "Teko";
     text-align: center;
-    color: aliceblue;
-    font-size: 1.6rem;
+    color: var(--primary-text-color);
+    font-size: 1.4rem;
+    text-shadow: rgb(14, 13, 13) 3px 2px 1px;
   }
 }
 
 h2 {
-  color: aliceblue;
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 main {
@@ -55,7 +60,6 @@ main {
   height: 80vh;
   margin: auto;
   padding: 30px;
-  color: aliceblue;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 

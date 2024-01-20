@@ -1,12 +1,22 @@
 main {
+    & article {
+        padding: 1.5rem;
+        background-color: var(--container-bg-color);
+        box-shadow: rgb(224, 184, 3) 6px 6px 2px;
+        border-radius: 10px;
+    }
     & h2 {
+        margin-bottom: 1rem;
+        font-size: 1rem;
+        color: black;
         text-align: center;
+        text-decoration: underline;
+
     }
     & p, ul, label {
-        font-size: 0.8rem;
         margin-top: 0.5rem;
+        font-size: 0.7rem;
         line-height: 1rem;
-        text-align: left;
     }
 
     & form {
@@ -15,6 +25,11 @@ main {
         flex-direction: column;
         align-items: center;
         
+        & label {
+            color: var(--primary-text-color);
+            font-weight: 600;
+        }
+
         & input, button {
             font-size: 0.8rem;
             margin-top: 0.5rem;

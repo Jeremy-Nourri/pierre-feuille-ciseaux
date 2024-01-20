@@ -5,7 +5,7 @@ function getUserName() {
     console.log(pUserName);
     console.log(nickname);
     if (nickname && pUserName) {
-        pUserName.textContent = "Bienvenue, " + nickname + "!";
+        pUserName.textContent = nickname;
     } else {
         console.error("Le nom d'utilisateur n'est pas défini ou l'élément HTML n'a pas été trouvé.");
     }
