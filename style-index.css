@@ -2,21 +2,25 @@ main {
     & article {
         padding: 1.5rem;
         background-color: var(--container-bg-color);
-        box-shadow: rgb(224, 184, 3) 6px 6px 2px;
+        box-shadow: var(--hands-color);
         border-radius: 10px;
     }
-    & h2 {
-        margin-bottom: 1rem;
-        font-size: 1rem;
-        color: black;
-        text-align: center;
-        text-decoration: underline;
+    & .container__h2 {
+        height: 90px;
+        clip-path: polygon(100% 0, 100% 79%, 0 95%, 0 17%);
+        background-color: var(--hands-color);
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
-    }
-    & p, ul, label {
-        margin-top: 0.5rem;
-        font-size: 0.7rem;
-        line-height: 1rem;
+        & h2 {
+            font-weight: 800;
+            font-size: 1rem;
+            color: black;
+            text-align: center;
+            text-decoration: underline;
+            transform: rotate(-3deg);
+        }
     }
 
     & form {
@@ -30,10 +34,5 @@ main {
             font-weight: 600;
         }
 
-        & input, button {
-            font-size: 0.8rem;
-            margin-top: 0.5rem;
-            line-height: 1rem;
-        }
     }
 }

@@ -1,6 +1,7 @@
 :root {
   --primary-text-color: rgb(237, 237, 246);
   --container-bg-color: rgb(237, 237, 246);
+  --hands-color: rgb(224, 184, 3) 6px 6px 2px;
 }
 
 body {
@@ -38,6 +39,12 @@ input:focus {
   box-shadow: 0 0 5px #00f;
 }
 
+p, ul, label, button, input, ::placeholder {
+  margin-top: 0.5rem;
+  font-size: 0.7rem;
+  line-height: 1rem;
+}
+
 header {
 
   & h1 {
@@ -48,11 +55,6 @@ header {
     font-size: 1.4rem;
     text-shadow: rgb(14, 13, 13) 3px 2px 1px;
   }
-}
-
-h2 {
-  font-size: 1rem;
-  font-weight: 700;
 }
 
 main {

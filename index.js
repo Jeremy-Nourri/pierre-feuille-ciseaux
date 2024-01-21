@@ -144,7 +144,6 @@ const compareChoice = (userChoice) => {
 function saveUserName(event) {
     event.preventDefault();
     user.nickname = document.getElementById("name-user").value;
-    console.log(user.nickname);
     localStorage.setItem("userName", user.nickname);
     window.location.href = "choice/choice.html";
 }
