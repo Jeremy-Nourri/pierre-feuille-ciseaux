@@ -4,22 +4,23 @@ main {
         background-color: var(--container-bg-color);
         box-shadow: var(--hands-color);
         border-radius: 10px;
-    }
-    & .container__h2 {
-        height: 90px;
-        clip-path: polygon(100% 0, 100% 79%, 0 95%, 0 17%);
-        background-color: var(--hands-color);
-        display: flex;
-        justify-content: center;
-        align-items: center;
 
-        & h2 {
-            font-weight: 800;
-            font-size: 1rem;
-            color: black;
-            text-align: center;
-            text-decoration: underline;
-            transform: rotate(-3deg);
+        & .container__h2 {
+            height: 90px;
+            clip-path: polygon(100% 0, 100% 79%, 0 95%, 0 17%);
+            background-color: rgb(245, 207, 19);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            & h2 {
+                font-weight: 800;
+                font-size: 1rem;
+                color: black;
+                text-align: center;
+                text-decoration: underline;
+                transform: rotate(-3deg);
+            }
         }
     }
 
@@ -35,4 +36,19 @@ main {
         }
 
     }
+
+    & .message-container {
+        text-align: center;
+        
+        & .message-name {
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-size: 0.8rem;
+            color: var(--primary-text-color);
+            text-align: center;
+            font-weight: 600;
+        }
+    }
+
+
 }

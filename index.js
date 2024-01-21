@@ -141,10 +141,33 @@ const compareChoice = (userChoice) => {
     }
 }
 
+function startPlay() {
+    window.location.href = "choice/choice.html"
+}
+
 function saveUserName(event) {
     event.preventDefault();
     user.nickname = document.getElementById("name-user").value;
     localStorage.setItem("userName", user.nickname);
-    window.location.href = "choice/choice.html";
+
+    const formContainer = document.querySelector(".container-form");
+    const formElement = document.querySelector(".index-form");
+
+    const messageName = document.createElement("p");
+    messageName.classList.add("message-name");
+    messageName.textContent = `Bonjour ${user.nickname} ! Es-tu prêt à jouer ?`
+    
+    const buttonPlay = document.createElement("button");
+    buttonPlay.classList.add("message-button");
+    buttonPlay.textContent = "Commencer une partie";
+    buttonPlay.addEventListener("click", startPlay)
+
+    const containerMessage = document.createElement("div");
+    containerMessage.classList.add("message-container");
+
+    containerMessage.appendChild(messageName);
+    containerMessage.appendChild(buttonPlay);
+    formContainer.replaceChild(containerMessage, formElement);
+
 }
 

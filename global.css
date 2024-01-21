@@ -18,6 +18,7 @@ button {
   border-radius: 8px;
   cursor: pointer;
   transition: opacity 0.3s ease;
+  font-weight: 600;
 }
 button:hover {
   opacity: 0.8;
@@ -62,7 +63,7 @@ main {
   height: 80vh;
   margin: auto;
   padding: 30px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Segoe UI', Tahoma, sans-serif;
 }
 
 
