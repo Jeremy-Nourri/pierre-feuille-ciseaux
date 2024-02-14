@@ -3,7 +3,7 @@
 /////////// INITIALISATION OF VARIABLES ///////////////
 
 const choiceArray = ["pierre", "feuille", "ciseaux"];
-const icons = ['✊', '✋', '✌️'];
+const icons = ["✊", "✋", "✌️"];
 
 class Player {
     constructor() {
@@ -33,6 +33,14 @@ document.addEventListener("DOMContentLoaded", () => {
         return elem;
     };
 
+    const createElemWithClassAndText = (tag, className, parent, text) => {
+        const element = document.createElement(tag);
+        element.className = className;
+        element.textContent = text;
+        parent.appendChild(element);
+        return element;
+    }
+
     const savePlayersName = () => {
         user.nickname = document.getElementById("name-user").value;
         computer1.nickname = "Pauline";
@@ -46,24 +54,14 @@ document.addEventListener("DOMContentLoaded", () => {
         articleElem.remove();
         formContainer.remove();
 
-        const containerChoiceUser = createElemWithClass('div', 'container-choice-user', mainElem);
-
-        const userNameParagraph = createElemWithClass('p', 'container-choice-user__name', containerChoiceUser);
-        userNameParagraph.textContent =  user.nickname;
-
-        const infoParagraph = createElemWithClass('p', 'container-choice-user__info', containerChoiceUser);
-        infoParagraph.textContent = 'Sélectionne un élément';
-
-
+        const containerChoiceUser = createElemWithClass("div", "container-choice-user", mainElem);
+        createElemWithClassAndText("p", "container-choice-user__name", containerChoiceUser, user.nickname);
+        createElemWithClassAndText("p", "container-choice-user__info", containerChoiceUser, "Sélectionne un élément");
 
         for (let i = 0; i < 3; i++) {
-            const subContainer = createElemWithClass('div', 'container-choice-user__sub', containerChoiceUser);
-
-            const iconDiv = createElemWithClass('div', 'sub__icon', subContainer);
-            iconDiv.textContent = icons[i];
-
-            const nameElemParagraph = createElemWithClass('p', 'sub__name-elem', subContainer);
-            nameElemParagraph.textContent = choiceArray[i];
+            const subContainer = createElemWithClass("div", "container-choice-user__sub", containerChoiceUser);
+            createElemWithClassAndText("div", "sub__icon", subContainer, icons[i]);
+            createElemWithClassAndText("p", "sub__name-elem", subContainer, choiceArray[i]);
         }
     }
 
