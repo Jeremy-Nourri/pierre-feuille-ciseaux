@@ -33,14 +33,13 @@ document.addEventListener("DOMContentLoaded", () => {
         return elem;
     };
 
-    function savePlayersName() {
+    const savePlayersName = () => {
         user.nickname = document.getElementById("name-user").value;
         computer1.nickname = "Pauline";
         computer2.nickname = "Mehdi";
     }
 
-
-    function createUserChoicesContainer() {
+    const createUserChoicesContainer = () => {
 
         const articleElem = document.querySelector("article");
 
@@ -69,7 +68,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-
     const containerMessage = document.createElement("div");
     const formElement = document.querySelector(".index-form");
 
@@ -77,7 +75,6 @@ document.addEventListener("DOMContentLoaded", () => {
         event.preventDefault();
 
         savePlayersName();
-
 
         containerMessage.classList.add("message-container");
 
