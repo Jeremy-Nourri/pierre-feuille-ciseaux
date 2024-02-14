@@ -13,145 +13,37 @@ class Player {
         return this.choice = choiceArray[nbIndex]
     }
 }
+const computer1 = new Player();
+const computer2 = new Player();
+const user = new Player();
 
-const computer1 = new Player("computer1");
-const computer2 = new Player("computer2");
-const user = new Player("user");
+document.addEventListener("DOMContentLoaded", () => {
 
-let message;
 
-computer1.choiceRandom();
-computer2.choiceRandom();
-
-console.log(computer1.choice);
-console.log(computer2.choice);
-
-const compareChoice = (userChoice) => {
-    if (user.choice === computer1.choice && user.choice === computer2.choice && computer1.choice === computer2.choice) {
-        message = "Égalité, aucun joueur ne marque de point"
-    }
-
-    if (userChoice === "pierre") {
-        if (computer1.choice === "feuille" && computer2.choice === "ciseaux" || computer1.choice === "ciseaux" && computer2.choice === "feuille") {
-            message = "Tout le monde gagne un point !";
-            ++computer1.score;
-            ++computer2.score;
-            ++user.score;
-        }
-        else if (computer1.choice === "pierre" && computer2.choice === "ciseaux") {
-            message = "Vous et computer1 gagnez un point !";
-            ++computer1.score;
-            ++user.score;
-        }
-        else if (computer1.choice === "ciseaux" && computer2.choice === "pierre") {
-            message = "Vous et computer2 gagnez un point !";
-            ++computer2.score;
-            ++user.score;
-        }
-        else if (computer1.choice === "feuille" && computer2.choice === "feuille") {
-            message = "Computer1 et computer2 gagnent un point !";
-            ++computer1.score;
-            ++computer2.score;
-        }
-        else if (computer1.choice === "ciseaux" && computer2.choice === "ciseaux") {
-            message = "Vous gagnez deux points !";
-            user.score +=2;
-        }
-        else if (computer1.score === "pierre" && computer2.score === "feuille") {
-            message = "Computer2 gagne deux points !";
-            computer2.score += 2;
-        }
-        else if (computer1.score === "feuille" && computer2.score === "pierre") {
-            message = "Computer1 gagne deux points !";
-            computer1.score += 2;
-        }
-    }
-
-    else if (userChoice === "feuille") {
-        if (computer1.choice === "pierre" && computer2.choice === "ciseaux" || computer1.choice === "ciseaux" && computer2.choice === "pierre") {
-            message = "Tout le monde gagne un point !";
-            ++computer1.score;
-            ++computer2.score;
-            ++user.score;
-        }
-        else if (computer1.choice === "feuille" && computer2.choice === "ciseaux") {
-            message = "Computer2 gagnent deux points !";
-            computer2.score += 2;
-        }
-        else if (computer1.choice === "ciseaux" && computer2.choice === "feuille") {
-            message = "Computer1 gagne deux points !";
-            computer1.score += 2;
-        }
-        else if (computer1.choice === "feuille" && computer2.choice === "pierre") {
-            message = "Vous et computer1 gagnez un point !";
-            ++computer1.score;
-            ++user.score;
-        }
-        else if (computer1.choice === "pierre" && computer2.choice === "feuille") {
-            message = "Vous et computer2 gagnez un point !";
-            ++computer2.score;
-            ++user.score;
-        }
-        else if (computer1.choice === "ciseaux" && computer2.choice === "ciseaux") {
-            message = "Computer1 et computer2 gagnent un point !";
-            ++computer1.score;
-            ++computer2.score;
-        }
-        else if (computer1.choice === "pierre" && computer2.choice === "pierre") {
-            message = "Vous gagnez deux points !";
-            user.score += 2;
-        }
-
-    }
-
-    else if (userChoice === "ciseaux") {
-        if (computer1.choice === "pierre" && computer2.choice === "feuille" || computer1.choice === "feuille" && computer2.choice === "pierre") {
-            message = "Tout le monde gagne un point !";
-            ++computer1.score;
-            ++computer2.score;
-            ++user.score;
-        }
-        else if (computer1.choice === "feuille" && computer2.choice === "ciseaux") {
-            message = "Vous et computer2 gagnez un point !";
-            ++computer2.score;
-            ++user.score;
-        }
-        else if (computer1.choice === "ciseaux" && computer2.choice === "feuille") {
-            message = "Vous et computer1 gagnez un point !";
-            ++computer1.score;
-            ++user.score;
-        }
-        else if (computer1.choice === "ciseaux" && computer2.choice === "pierre") {
-            message = "Computer2 gagne deux points !";
-            computer2.score += 2;
-        }
-        else if (computer1.choice === "pierre" && computer2.choice === "ciseaux") {
-            message = "Computer1 gagne deux points !";
-            computer1.score += 2;
-        }
-        else if (computer1.choice === "feuille" && computer2.choice === "feuille") {
-            message = "Vous gagnez deux points !";
-            user.score += 2;
-        }
-        else if (computer1.choice === "pierre" && computer2.choice === "pierre") {
-            message = "Computer1 et computer2 gagnent un point !";
-            ++computer1.score;
-            ++computer2.score;
-        }
-    }
-}
-
-function startPlay() {
-    window.location.href = "choice/choice.html"
-}
-
-function saveUserName(event) {
-    event.preventDefault();
+function savePlayersName() {
     user.nickname = document.getElementById("name-user").value;
-    localStorage.setItem("userName", user.nickname);
+    computer1.nickname = "Pauline";
+    computer2.nickname = "Mehdi";
+}
 
-    const formContainer = document.querySelector(".container-form");
-    const formElement = document.querySelector(".index-form");
+// function displayName(userId, nickname) {
+//     const container = document.getElementById(userId);
+//     container.textContent = nickname;
+// }
+
+function redirectToChoicePage() {
+    window.location.href = "./choice/choice.html";
+}
+
+const formContainer = document.querySelector(".container-form");
+const formElement = document.querySelector(".index-form");
+
+console.log(formElement);
+
+formElement.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    savePlayersName();
 
     const messageName = document.createElement("p");
     messageName.classList.add("message-name");
@@ -160,7 +52,7 @@ function saveUserName(event) {
     const buttonPlay = document.createElement("button");
     buttonPlay.classList.add("message-button");
     buttonPlay.textContent = "Commencer une partie";
-    buttonPlay.addEventListener("click", startPlay)
+    buttonPlay.addEventListener("click", redirectToChoicePage)
 
     const containerMessage = document.createElement("div");
     containerMessage.classList.add("message-container");
@@ -169,5 +61,123 @@ function saveUserName(event) {
     containerMessage.appendChild(buttonPlay);
     formContainer.replaceChild(containerMessage, formElement);
 
-}
+});
+});
 
+// let message;
+
+
+// const compareChoices = () => {
+//     if (user.choice === computer1.choice && user.choice === computer2.choice && computer1.choice === computer2.choice) {
+//         message = "Égalité, aucun joueur ne marque de point"
+//     }
+
+//     if (userChoice === "pierre") {
+//         if (computer1.choice === "feuille" && computer2.choice === "ciseaux" || computer1.choice === "ciseaux" && computer2.choice === "feuille") {
+//             message = "Tout le monde gagne un point !";
+//             ++computer1.score;
+//             ++computer2.score;
+//             ++user.score;
+//         }
+//         else if (computer1.choice === "pierre" && computer2.choice === "ciseaux") {
+//             message = `Vous et ${computer1.nickname} gagnez un point !`;
+//             ++computer1.score;
+//             ++user.score;
+//         }
+//         else if (computer1.choice === "ciseaux" && computer2.choice === "pierre") {
+//             message = `Vous et ${computer2.nickname} gagnez un point !`;
+//             ++computer2.score;
+//             ++user.score;
+//         }
+//         else if (computer1.choice === "feuille" && computer2.choice === "feuille") {
+//             message = `${computer1.nickname} et ${computer2.nickname} gagnent un point !`;
+//             ++computer1.score;
+//             ++computer2.score;
+//         }
+//         else if (computer1.choice === "ciseaux" && computer2.choice === "ciseaux") {
+//             message = "Vous gagnez deux points !";
+//             user.score +=2;
+//         }
+//         else if (computer1.score === "pierre" && computer2.score === "feuille") {
+//             message = `${computer2.nickname} gagne deux points !`;
+//             computer2.score += 2;
+//         }
+//         else if (computer1.score === "feuille" && computer2.score === "pierre") {
+//             message = `${computer1.nickname} gagne deux points !`;
+//             computer1.score += 2;
+//         }
+//     }
+
+//     else if (userChoice === "feuille") {
+//         if (computer1.choice === "pierre" && computer2.choice === "ciseaux" || computer1.choice === "ciseaux" && computer2.choice === "pierre") {
+//             message = "Tout le monde gagne un point !";
+//             ++computer1.score;
+//             ++computer2.score;
+//             ++user.score;
+//         }
+//         else if (computer1.choice === "feuille" && computer2.choice === "ciseaux") {
+//             message = `${computer2.nickname} gagnent deux points !`;
+//             computer2.score += 2;
+//         }
+//         else if (computer1.choice === "ciseaux" && computer2.choice === "feuille") {
+//             message = `${computer1.nickname} gagne deux points !`;
+//             computer1.score += 2;
+//         }
+//         else if (computer1.choice === "feuille" && computer2.choice === "pierre") {
+//             message = `Vous et ${computer1.nickname} gagnez un point !`;
+//             ++computer1.score;
+//             ++user.score;
+//         }
+//         else if (computer1.choice === "pierre" && computer2.choice === "feuille") {
+//             message = `Vous et ${computer2.nickname} gagnez un point !`;
+//             ++computer2.score;
+//             ++user.score;
+//         }
+//         else if (computer1.choice === "ciseaux" && computer2.choice === "ciseaux") {
+//             message = `${computer1.nickname} et ${computer2.nickname} gagnent un point !`;
+//             ++computer1.score;
+//             ++computer2.score;
+//         }
+//         else if (computer1.choice === "pierre" && computer2.choice === "pierre") {
+//             message = "Vous gagnez deux points !";
+//             user.score += 2;
+//         }
+
+//     }
+
+//     else if (userChoice === "ciseaux") {
+//         if (computer1.choice === "pierre" && computer2.choice === "feuille" || computer1.choice === "feuille" && computer2.choice === "pierre") {
+//             message = "Tout le monde gagne un point !";
+//             ++computer1.score;
+//             ++computer2.score;
+//             ++user.score;
+//         }
+//         else if (computer1.choice === "feuille" && computer2.choice === "ciseaux") {
+//             message = `Vous et ${computer2.nickname} gagnez un point !`;
+//             ++computer2.score;
+//             ++user.score;
+//         }
+//         else if (computer1.choice === "ciseaux" && computer2.choice === "feuille") {
+//             message = `Vous et ${computer1.nickname} gagnez un point !`;
+//             ++computer1.score;
+//             ++user.score;
+//         }
+//         else if (computer1.choice === "ciseaux" && computer2.choice === "pierre") {
+//             message = `${computer2.nickname} gagne deux points !`;
+//             computer2.score += 2;
+//         }
+//         else if (computer1.choice === "pierre" && computer2.choice === "ciseaux") {
+//             message = `${computer1.nickname} gagne deux points !`;
+//             computer1.score += 2;
+//         }
+//         else if (computer1.choice === "feuille" && computer2.choice === "feuille") {
+//             message = "Vous gagnez deux points !";
+//             user.score += 2;
+//         }
+//         else if (computer1.choice === "pierre" && computer2.choice === "pierre") {
+//             message = `${computer1.nickname} et ${computer2.nickname} gagnent un point !`;
+//             ++computer1.score;
+//             ++computer2.score;
+//         }
+//     }
+// }
