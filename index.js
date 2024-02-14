@@ -1,6 +1,9 @@
 "use strict"
 
-const choiceArray = ["pierre", "feuille", "ciseaux"]
+/////////// INITIALISATION OF VARIABLES ///////////////
+
+const choiceArray = ["pierre", "feuille", "ciseaux"];
+const icons = ['✊', '✋', '✌️'];
 
 class Player {
     constructor() {
@@ -19,49 +22,76 @@ const user = new Player();
 
 document.addEventListener("DOMContentLoaded", () => {
 
+    const mainElem = document.querySelector("main");
+    const formContainer = document.querySelector(".container-form");
 
-function savePlayersName() {
-    user.nickname = document.getElementById("name-user").value;
-    computer1.nickname = "Pauline";
-    computer2.nickname = "Mehdi";
-}
+    /////////////// function to add element in DOM with class name attributes 
+    const createElemWithClass = (tag, className, parent) => {
+        const elem = document.createElement(tag);
+        elem.setAttribute("class", className);
+        parent.appendChild(elem);
+        return elem;
+    };
 
-// function displayName(userId, nickname) {
-//     const container = document.getElementById(userId);
-//     container.textContent = nickname;
-// }
+    function savePlayersName() {
+        user.nickname = document.getElementById("name-user").value;
+        computer1.nickname = "Pauline";
+        computer2.nickname = "Mehdi";
+    }
 
-function redirectToChoicePage() {
-    window.location.href = "./choice/choice.html";
-}
 
-const formContainer = document.querySelector(".container-form");
-const formElement = document.querySelector(".index-form");
+    function createUserChoicesContainer() {
 
-console.log(formElement);
+        const articleElem = document.querySelector("article");
 
-formElement.addEventListener("submit", (event) => {
-    event.preventDefault();
+        articleElem.remove();
+        formContainer.remove();
 
-    savePlayersName();
+        const containerChoiceUser = createElemWithClass('div', 'container-choice-user', mainElem);
 
-    const messageName = document.createElement("p");
-    messageName.classList.add("message-name");
-    messageName.textContent = `Bonjour ${user.nickname} ! Es-tu prêt à jouer ?`
-    
-    const buttonPlay = document.createElement("button");
-    buttonPlay.classList.add("message-button");
-    buttonPlay.textContent = "Commencer une partie";
-    buttonPlay.addEventListener("click", redirectToChoicePage)
+        const userNameParagraph = createElemWithClass('p', 'container-choice-user__name', containerChoiceUser);
+        userNameParagraph.textContent =  user.nickname;
+
+        const infoParagraph = createElemWithClass('p', 'container-choice-user__info', containerChoiceUser);
+        infoParagraph.textContent = 'Sélectionne un élément';
+
+
+
+        for (let i = 0; i < 3; i++) {
+            const subContainer = createElemWithClass('div', 'container-choice-user__sub', containerChoiceUser);
+
+            const iconDiv = createElemWithClass('div', 'sub__icon', subContainer);
+            iconDiv.textContent = icons[i];
+
+            const nameElemParagraph = createElemWithClass('p', 'sub__name-elem', subContainer);
+            nameElemParagraph.textContent = choiceArray[i];
+        }
+    }
+
+
 
     const containerMessage = document.createElement("div");
-    containerMessage.classList.add("message-container");
+    const formElement = document.querySelector(".index-form");
 
-    containerMessage.appendChild(messageName);
-    containerMessage.appendChild(buttonPlay);
-    formContainer.replaceChild(containerMessage, formElement);
+    formElement.addEventListener("submit", (event) => {
+        event.preventDefault();
 
-});
+        savePlayersName();
+
+
+        containerMessage.classList.add("message-container");
+
+        const messageName = createElemWithClass("p", "message-name", containerMessage);
+        messageName.textContent = `Bonjour ${user.nickname} ! Es-tu prêt à jouer ?`;
+
+        const buttonPlay = createElemWithClass("button", "message-button", containerMessage);
+        buttonPlay.textContent = "Commencer une partie"
+        buttonPlay.addEventListener("click", createUserChoicesContainer);
+
+        formContainer.replaceChild(containerMessage, formElement);
+
+    });
+
 });
 
 // let message;
