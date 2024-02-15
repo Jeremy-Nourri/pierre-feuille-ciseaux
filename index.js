@@ -2,8 +2,11 @@
 
 /////////// INITIALISATION OF VARIABLES ///////////////
 
-const choiceArray = ["pierre", "feuille", "ciseaux"];
-const icons = ["✊", "✋", "✌️"];
+const choiceObj = {
+    pierre: "✊",
+    feuille: "✋",
+    ciseaux: "✌️"
+}
 
 class Player {
     constructor() {
@@ -13,7 +16,7 @@ class Player {
     }
     choiceRandom() {
         let nbIndex = Math.floor(Math.random() * 3);
-        return this.choice = choiceArray[nbIndex]
+        return this.choice = choiceArray[nbIndex];
     }
 }
 const computer1 = new Player();
@@ -33,6 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return elem;
     };
 
+    /////////////// function to add element in DOM with class name attributes and text content
     const createElemWithClassAndText = (tag, className, parent, text) => {
         const element = document.createElement(tag);
         element.className = className;
@@ -47,6 +51,23 @@ document.addEventListener("DOMContentLoaded", () => {
         computer2.nickname = "Mehdi";
     }
 
+    const savePlayersChoice = (event) => {
+        user.choice = event.target.id;
+        computer1.choiceRandom();
+        computer2.choiceRandom();
+        console.log(user.choice);
+    }
+
+    const createPlayersResultsContainer = () => {
+        document.querySelector(".container-choice-user").remove();
+        const containerChoiceUser = createElemWithClass("div", "container-choice-user", mainElem);
+        createElemWithClassAndText("p", "container-choice-user__name", containerChoiceUser, computer1.nickname);
+        createElemWithClassAndText("p", "container-choice-user__info", containerChoiceUser, );
+        createElemWithClassAndText("p", "container-choice-user__name", containerChoiceUser, user.nickname);
+        createElemWithClassAndText("p", "container-choice-user__info", containerChoiceUser, "Sélectionne un élément");
+        
+    }
+
     const createUserChoicesContainer = () => {
 
         const articleElem = document.querySelector("article");
@@ -58,15 +79,18 @@ document.addEventListener("DOMContentLoaded", () => {
         createElemWithClassAndText("p", "container-choice-user__name", containerChoiceUser, user.nickname);
         createElemWithClassAndText("p", "container-choice-user__info", containerChoiceUser, "Sélectionne un élément");
 
-        for (let i = 0; i < 3; i++) {
+        for (const item in choiceObj) {
             const subContainer = createElemWithClass("div", "container-choice-user__sub", containerChoiceUser);
-            createElemWithClassAndText("div", "sub__icon", subContainer, icons[i]);
+            const subIcon = createElemWithClassAndText("div", "sub__icon", subContainer, item.);
+            subIcon.setAttribute("id", choiceArray[i]);
             createElemWithClassAndText("p", "sub__name-elem", subContainer, choiceArray[i]);
+            subIcon.addEventListener("click", savePlayersChoice);
         }
     }
 
-
     const containerMessage = document.createElement("div");
+    containerMessage.classList.add("message-container");
+
     const formElement = document.querySelector(".index-form");
 
     formElement.addEventListener("submit", (event) => {
@@ -74,17 +98,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
         savePlayersName();
 
-        containerMessage.classList.add("message-container");
+        createElemWithClassAndText("p", "message-name", containerMessage, `Bonjour ${user.nickname} ! Es-tu prêt à jouer ?`);
 
-        const messageName = createElemWithClass("p", "message-name", containerMessage);
-        messageName.textContent = `Bonjour ${user.nickname} ! Es-tu prêt à jouer ?`;
-
-        const buttonPlay = createElemWithClass("button", "message-button", containerMessage);
-        buttonPlay.textContent = "Commencer une partie"
+        const buttonPlay = createElemWithClassAndText("button", "message-button", containerMessage, "Commencer une partie");
         buttonPlay.addEventListener("click", createUserChoicesContainer);
 
         formContainer.replaceChild(containerMessage, formElement);
-
     });
 
 });
