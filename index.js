@@ -17,6 +17,7 @@ class Player {
         this.nickname = "";
         this.choice = "";
         this.score = 0;
+        this.avatar = "";
     }
     choiceRandom() {
         let nbIndex = Math.floor(Math.random() * 3);
@@ -26,7 +27,13 @@ class Player {
 
 /////////// INSTANCES
 const computer1 = new Player();
+computer1.nickname = "Pauline";
+computer1.avatar = "./avatar/avatar-m.png";
+
 const computer2 = new Player();
+computer2.nickname = "Mehdi";
+computer2.avatar = "./avatar/avatar-p.png";
+
 const user = new Player();
 
 
@@ -35,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const mainElem = document.querySelector("main");
     const formContainer = document.querySelector(".container-form");
 
-    /////////////// function to add element in DOM with class name attributes 
+    /////////////// Function to add element in DOM with class name attributes 
     const createElemWithClass = (tag, className, parent) => {
         const elem = document.createElement(tag);
         elem.setAttribute("class", className);
@@ -43,7 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return elem;
     };
 
-    /////////////// function to add element in DOM with class name attributes and text content
+    /////////////// Function to add element in DOM with class name attributes and text content
     const createElemWithClassAndText = (tag, className, parent, text) => {
         const element = document.createElement(tag);
         element.className = className;
@@ -52,34 +59,29 @@ document.addEventListener("DOMContentLoaded", () => {
         return element;
     }
 
-    const savePlayersName = () => {
+    /////////////// Functions used in the home view ///////////////
+    const saveUserName = () => {
         user.nickname = document.getElementById("name-user").value;
-        computer1.nickname = "Pauline";
-        computer2.nickname = "Mehdi";
+        console.log(computer1.avatar);
     }
 
-    const createPlayersChoicesItems = (player, containerChoiceUser) => {
-        const subContainer = createElemWithClass("div", "container-choice-user__sub", containerChoiceUser);
-        createElemWithClassAndText("p", "sub__name-elem", subContainer, `${player.nickname} a sélectionné l'élément :`);
-        createElemWithClassAndText("div", "sub__icon sub__icon--players", subContainer, choiceObj[player.choice]);
-        createElemWithClassAndText("p", "sub__name", subContainer, player.choice);
-    }
-    
-    const createPlayersResultsContainer = () => {
-        document.querySelector(".container-choice-user").remove();
-        const containerChoiceUser = createElemWithClass("div", "container-choice-user", mainElem);
-        createPlayersChoicesItems(computer1, containerChoiceUser);
-        createPlayersChoicesItems(computer2, containerChoiceUser);
-        createPlayersChoicesItems(user, containerChoiceUser);
-    }
+    const containerMessage = document.createElement("div");
+    containerMessage.classList.add("message-container");
 
-    const saveAndDisplayPlayersChoice = (event) => {
-        user.choice = event.target.id;
-        computer1.choiceRandom();
-        computer2.choiceRandom();
-        console.log(user.choice);
-        createPlayersResultsContainer();
-    }
+    const formElement = document.querySelector(".index-form");
+
+    formElement.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        saveUserName();
+
+        createElemWithClassAndText("p", "message-name", containerMessage, `Bonjour ${user.nickname} ! Es-tu prêt(e) à jouer ?`);
+
+        const buttonPlay = createElemWithClassAndText("button", "message-button", containerMessage, "Commencer une partie");
+        buttonPlay.addEventListener("click", createUserChoicesContainer);
+
+        formContainer.replaceChild(containerMessage, formElement);
+    });
 
     const createUserChoicesContainer = () => {
 
@@ -97,28 +99,48 @@ document.addEventListener("DOMContentLoaded", () => {
             const subIcon = createElemWithClassAndText("div", "sub__icon", subContainer, iconsArray[i]);
             subIcon.setAttribute("id", choiceArray[i]);
             createElemWithClassAndText("p", "sub__name-elem", subContainer, choiceArray[i]);
-            subIcon.addEventListener("click", saveAndDisplayPlayersChoice);
+            subIcon.addEventListener("click", saveAndDisplayPlayersChoices);
         }
     }
 
-    const containerMessage = document.createElement("div");
-    containerMessage.classList.add("message-container");
+    
 
-    const formElement = document.querySelector(".index-form");
 
-    formElement.addEventListener("submit", (event) => {
-        event.preventDefault();
+    /////////////// Functions used in the view that displays player choices ///////////////
 
-        savePlayersName();
+    const createPlayersChoicesItems = (player, containerChoiceUser) => {
+        const subContainer = createElemWithClass("div", "container-choice-user__sub", containerChoiceUser);
+        createElemWithClassAndText("p", "sub__name-elem", subContainer, `${player.nickname} a sélectionné l'élément :`);
+        createElemWithClassAndText("div", "sub__icon sub__icon--players", subContainer, choiceObj[player.choice]);
+        createElemWithClassAndText("p", "sub__name", subContainer, player.choice);
+    }
+    
+    const createPlayersChoicesContainer = () => {
+        document.querySelector(".container-choice-user").remove();
+        const containerChoiceUser = createElemWithClass("div", "container-choice-user", mainElem);
+        const loader = createElemWithClass("img","loader", containerChoiceUser);
+        loader.setAttribute("src", "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExajcybTFxdXRodjlxcnR2eXRyMjJkcGo0Mmh3MXp2d3o1MHFuNnY1dSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/MIlFrmkPJDvec6qSzl/giphy.gif")
 
-        createElemWithClassAndText("p", "message-name", containerMessage, `Bonjour ${user.nickname} ! Es-tu prêt à jouer ?`);
+        setTimeout(() => {
+            document.querySelector(".container-choice-user").remove();
+            const containerChoiceUser = createElemWithClass("div", "container-choice-user", mainElem);
+            createPlayersChoicesItems(computer1, containerChoiceUser);
+            createPlayersChoicesItems(computer2, containerChoiceUser);
+            createPlayersChoicesItems(user, containerChoiceUser);
+        }, 3000);
+    }
 
-        const buttonPlay = createElemWithClassAndText("button", "message-button", containerMessage, "Commencer une partie");
-        buttonPlay.addEventListener("click", createUserChoicesContainer);
+    const saveAndDisplayPlayersChoices = (event) => {
 
-        formContainer.replaceChild(containerMessage, formElement);
-    });
+        user.choice = event.target.id;
+        computer1.choiceRandom();
+        computer2.choiceRandom();
+        console.log(user.choice);
 
+        createPlayersChoicesContainer();
+    }
+
+    
 });
 
 // let message;
