@@ -8,6 +8,10 @@ const choiceObj = {
     ciseaux: "✌️"
 }
 
+const choiceArray = Object.keys(choiceObj);
+const iconsArray = Object.values(choiceObj);
+
+/////////// CLASS
 class Player {
     constructor() {
         this.nickname = "";
@@ -19,9 +23,12 @@ class Player {
         return this.choice = choiceArray[nbIndex];
     }
 }
+
+/////////// INSTANCES
 const computer1 = new Player();
 const computer2 = new Player();
 const user = new Player();
+
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -51,21 +58,27 @@ document.addEventListener("DOMContentLoaded", () => {
         computer2.nickname = "Mehdi";
     }
 
-    const savePlayersChoice = (event) => {
+    const createPlayersChoicesItems = (player, containerChoiceUser) => {
+        const subContainer = createElemWithClass("div", "container-choice-user__sub", containerChoiceUser);
+        createElemWithClassAndText("p", "sub__name-elem", subContainer, `${player.nickname} a sélectionné l'élément :`);
+        createElemWithClassAndText("div", "sub__icon sub__icon--players", subContainer, choiceObj[player.choice]);
+        createElemWithClassAndText("p", "sub__name", subContainer, player.choice);
+    }
+    
+    const createPlayersResultsContainer = () => {
+        document.querySelector(".container-choice-user").remove();
+        const containerChoiceUser = createElemWithClass("div", "container-choice-user", mainElem);
+        createPlayersChoicesItems(computer1, containerChoiceUser);
+        createPlayersChoicesItems(computer2, containerChoiceUser);
+        createPlayersChoicesItems(user, containerChoiceUser);
+    }
+
+    const saveAndDisplayPlayersChoice = (event) => {
         user.choice = event.target.id;
         computer1.choiceRandom();
         computer2.choiceRandom();
         console.log(user.choice);
-    }
-
-    const createPlayersResultsContainer = () => {
-        document.querySelector(".container-choice-user").remove();
-        const containerChoiceUser = createElemWithClass("div", "container-choice-user", mainElem);
-        createElemWithClassAndText("p", "container-choice-user__name", containerChoiceUser, computer1.nickname);
-        createElemWithClassAndText("p", "container-choice-user__info", containerChoiceUser, );
-        createElemWithClassAndText("p", "container-choice-user__name", containerChoiceUser, user.nickname);
-        createElemWithClassAndText("p", "container-choice-user__info", containerChoiceUser, "Sélectionne un élément");
-        
+        createPlayersResultsContainer();
     }
 
     const createUserChoicesContainer = () => {
@@ -79,12 +92,12 @@ document.addEventListener("DOMContentLoaded", () => {
         createElemWithClassAndText("p", "container-choice-user__name", containerChoiceUser, user.nickname);
         createElemWithClassAndText("p", "container-choice-user__info", containerChoiceUser, "Sélectionne un élément");
 
-        for (const item in choiceObj) {
+        for (let i = 0; i < 3; i++) {
             const subContainer = createElemWithClass("div", "container-choice-user__sub", containerChoiceUser);
-            const subIcon = createElemWithClassAndText("div", "sub__icon", subContainer, item.);
+            const subIcon = createElemWithClassAndText("div", "sub__icon", subContainer, iconsArray[i]);
             subIcon.setAttribute("id", choiceArray[i]);
             createElemWithClassAndText("p", "sub__name-elem", subContainer, choiceArray[i]);
-            subIcon.addEventListener("click", savePlayersChoice);
+            subIcon.addEventListener("click", saveAndDisplayPlayersChoice);
         }
     }
 

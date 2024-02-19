@@ -2,7 +2,7 @@ main {
     & article {
         padding: 1.5rem;
         background-color: var(--container-bg-color);
-        box-shadow: var(--hands-color);
+        box-shadow:  6px 6px 2px var(--hands-color);
         border-radius: 10px;
 
         & .container__h2 {

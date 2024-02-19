@@ -26,6 +26,14 @@
             background-color: rgb(201, 199, 199);
             cursor: pointer;
         }
+        & .sub__icon--players:hover {
+            background-color: var(--container-bg-color);
+            cursor: default;
+        }
+        & .sub__name-elem {
+            font-weight: 700;
+            color: var(--name-color);
+        }
     }
 
     & p, ul {

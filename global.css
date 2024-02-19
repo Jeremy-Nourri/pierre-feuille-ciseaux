@@ -1,7 +1,8 @@
 :root {
   --primary-text-color: rgb(237, 237, 246);
   --container-bg-color: rgb(237, 237, 246);
-  --hands-color: rgb(224, 184, 3) 6px 6px 2px;
+  --hands-color: rgb(224, 184, 3);
+  --name-color: #070653;
 }
 
 body {
@@ -34,10 +35,10 @@ input {
 }
 
 input:focus {
-  outline-color: #00f;
+  outline-color: var(--hands-color);
   outline-width: 2px;
   outline-style: solid;
-  box-shadow: 0 0 5px #00f;
+  box-shadow: 0 0 5px var(--hands-color);
 }
 
 p, ul, label, button, input, ::placeholder {
