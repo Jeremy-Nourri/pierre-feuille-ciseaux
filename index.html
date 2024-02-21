@@ -40,11 +40,44 @@
         </article>
         
         <div class="container-form">
+
             <form action="" class="index-form">
-                <label for="name-user" class="index-form__label">Choisissez votre pseudo</label>
-                <input type="text" id="name-user" class="index-form__input" placeholder="Michel">
+
+                <label for="name-user" class="index-form__label">Choisis ton pseudo</label>
+                <input type="text" id="name-user" class="index-form__input" placeholder="Michel" required>
+
+                <label for="name-user" class="index-form__label">Choisis ton avatar</label>
+                <div class="index-form__container-avatars">
+                    <div class="container-avatars__div">
+                        <label for="avatar-user-f1">
+                            <img src="./img/avatar-user-f1.png"  alt="avatar">
+                        </label>
+                        <input type="radio" name="avatars" id="avatar-user-f1" required>
+                    </div>
+                    <div class="container-avatars__div">
+                        <label for="avatar-user-f2">
+                            <img src="./img/avatar-user-f2.png" alt="avatar">
+                        </label>
+                        <input type="radio" name="avatars" id="avatar-user-f2" required>
+                    </div>
+                    <div class="container-avatars__div">
+                        <label for="avatar-user-m1">
+                            <img src="./img/avatar-user-m1.png" alt="avatar">
+                        </label>
+                        <input type="radio" name="avatars" id="avatar-user-m1" required>
+                    </div>
+                    <div class="container-avatars__div">
+                        <label for="avatar-user-m2">
+                            <img src="./img/avatar-user-m2.png" alt="avatar">
+                        </label>
+                        <input type="radio" name="avatars" id="avatar-user-m2" required>
+
+                    </div>
+                </div>
+
                 <button type="submit" >Enregistrer</button>
             </form>
+
         </div>
 
     </main>

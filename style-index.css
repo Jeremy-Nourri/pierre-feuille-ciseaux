@@ -31,10 +31,56 @@ main {
         align-items: center;
         
         & label {
+            display: block;
             color: var(--primary-text-color);
             font-weight: 600;
         }
 
+        & .index-form__container-avatars {
+            width: 80%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-content: center;
+            margin: 0.7rem;
+            
+            & .container-avatars__div {
+                width: 85px;
+                height: 85px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin-bottom: 1.7rem;
+
+                & label {
+                    width: 85px;
+                    height: 85px;
+                    background-color: var(--container-bg-color);
+                    border-radius: 50%;
+                    transition: transform 0.3s ease-in-out;
+
+                    & img {
+                        display: block;
+                        width: 80px;
+                        height: 80px;
+                        margin: auto;
+                    }
+                }
+                & label:hover {
+                    transform: scale(1.1);
+                    cursor: pointer;
+                }
+
+                & input {
+                    width: 80px;
+                }
+                & input:focus {
+                    outline-style: none;
+                }
+            }
+        }
+
+        }
     }
 
     & .message-container {

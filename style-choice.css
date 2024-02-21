@@ -12,35 +12,64 @@
     }
 
     & .container-choice-user__sub {
-        margin-top: 1rem;
-        padding: 15px 0;
+        margin-bottom: 0.8rem;
+        
         & .sub__icon {
             width: 110px;
             height:100px;
-            margin: auto;
+            margin: 0 auto;
             padding: 0.5rem;
             font-size: 5rem;
             text-align: center;
         }
+        
         & .sub__icon:hover {
             background-color: rgb(201, 199, 199);
             cursor: pointer;
         }
+        
         & .sub__icon--players:hover {
-            background-color: var(--container-bg-color);
             cursor: default;
         }
         & .sub__name-elem {
+            font-size: 0.8rem;
             font-weight: 700;
             color: var(--name-color);
+            margin-top: 0;
+        }
+        & .sub__div-avatar-icon {
+            display: flex;
+            justify-content: center;
+            margin-top: 1rem;
+
+            & .avatar{
+                width: 120px;
+            }
+            & .div-icon-name {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-content: center;
+                width: 70px;
+                height: 70px;
+                background-color: rgb(201, 199, 199);
+                border-radius: 50%;
+    
+                & .div-avatar-icon__icon {
+                    font-size: 2rem;
+                }
+                & .div-avatar-icon__elem {
+                    font-size: 0.6rem;
+                    font-weight: 600;
+                }    
+            }
         }
     }
 
     & p, ul {
         font-size: 1rem;
         text-align: center;
-        color: black;
-        
+        color: black;        
     }
 
     & .loader {

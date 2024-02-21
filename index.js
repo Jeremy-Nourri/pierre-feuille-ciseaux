@@ -1,7 +1,5 @@
 "use strict"
 
-/////////// INITIALISATION OF VARIABLES ///////////////
-
 const choiceObj = {
     pierre: "✊",
     feuille: "✋",
@@ -28,47 +26,48 @@ class Player {
 /////////// INSTANCES
 const computer1 = new Player();
 computer1.nickname = "Pauline";
-computer1.avatar = "./avatar/avatar-m.png";
+computer1.avatar = "./img/avatar-p.png";
 
 const computer2 = new Player();
 computer2.nickname = "Mehdi";
-computer2.avatar = "./avatar/avatar-p.png";
+computer2.avatar = "./img/avatar-m.png";
 
 const user = new Player();
+
+ /////////////// Function to add element in DOM with class name attributes 
+const createElemWithClass = (tag, className, parent) => {
+    const elem = document.createElement(tag);
+    elem.setAttribute("class", className);
+    parent.appendChild(elem);
+    return elem;
+};
+
+    /////////////// Function to add element in DOM with class name attributes and text content
+const createElemWithClassAndText = (tag, className, parent, text) => {
+    const element = document.createElement(tag);
+    element.className = className;
+    element.textContent = text;
+    parent.appendChild(element);
+    return element;
+}
+
+
+const saveUserName = () => {
+    user.nickname = document.getElementById("name-user").value;
+    console.log(computer1.avatar);
+}
 
 
 document.addEventListener("DOMContentLoaded", () => {
 
     const mainElem = document.querySelector("main");
+
+    /////////////// Form to set user's nickname ///////////////
     const formContainer = document.querySelector(".container-form");
-
-    /////////////// Function to add element in DOM with class name attributes 
-    const createElemWithClass = (tag, className, parent) => {
-        const elem = document.createElement(tag);
-        elem.setAttribute("class", className);
-        parent.appendChild(elem);
-        return elem;
-    };
-
-    /////////////// Function to add element in DOM with class name attributes and text content
-    const createElemWithClassAndText = (tag, className, parent, text) => {
-        const element = document.createElement(tag);
-        element.className = className;
-        element.textContent = text;
-        parent.appendChild(element);
-        return element;
-    }
-
-    /////////////// Functions used in the home view ///////////////
-    const saveUserName = () => {
-        user.nickname = document.getElementById("name-user").value;
-        console.log(computer1.avatar);
-    }
+    const formElement = document.querySelector(".index-form");
 
     const containerMessage = document.createElement("div");
     containerMessage.classList.add("message-container");
-
-    const formElement = document.querySelector(".index-form");
 
     formElement.addEventListener("submit", (event) => {
         event.preventDefault();
@@ -78,13 +77,19 @@ document.addEventListener("DOMContentLoaded", () => {
         createElemWithClassAndText("p", "message-name", containerMessage, `Bonjour ${user.nickname} ! Es-tu prêt(e) à jouer ?`);
 
         const buttonPlay = createElemWithClassAndText("button", "message-button", containerMessage, "Commencer une partie");
-        buttonPlay.addEventListener("click", createUserChoicesContainer);
+        buttonPlay.addEventListener("click", createNewsContainers);
 
         formContainer.replaceChild(containerMessage, formElement);
     });
 
-    const createUserChoicesContainer = () => {
 
+    // const createAvatarAndScoreContainer = (player, containerPlayers) => {
+    //     const containerSinglePlayer = createElemWithClass("div", "container-single-player", containerPlayers);
+    //     const avatar = createElemWithClass("img", "avatar", containerSinglePlayer);
+    //     avatar.setAttribute("src", player.avatar);
+    // }
+
+    const createNewsContainers = () => {
         const articleElem = document.querySelector("article");
 
         articleElem.remove();
@@ -103,16 +108,20 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    
-
-
     /////////////// Functions used in the view that displays player choices ///////////////
 
     const createPlayersChoicesItems = (player, containerChoiceUser) => {
         const subContainer = createElemWithClass("div", "container-choice-user__sub", containerChoiceUser);
         createElemWithClassAndText("p", "sub__name-elem", subContainer, `${player.nickname} a sélectionné l'élément :`);
-        createElemWithClassAndText("div", "sub__icon sub__icon--players", subContainer, choiceObj[player.choice]);
-        createElemWithClassAndText("p", "sub__name", subContainer, player.choice);
+
+        const divAvatarIcon = createElemWithClass("div", "sub__div-avatar-icon", subContainer);
+
+        const avatar = createElemWithClass("img", "avatar", divAvatarIcon);
+        avatar.setAttribute("src", player.avatar);
+
+        const divIconName = createElemWithClass("div", "div-icon-name", divAvatarIcon)
+        createElemWithClassAndText("div", "div-avatar-icon__icon", divIconName, choiceObj[player.choice]);
+        createElemWithClassAndText("p", "div-avatar-icon__elem", divIconName, player.choice);
     }
     
     const createPlayersChoicesContainer = () => {
@@ -124,10 +133,12 @@ document.addEventListener("DOMContentLoaded", () => {
         setTimeout(() => {
             document.querySelector(".container-choice-user").remove();
             const containerChoiceUser = createElemWithClass("div", "container-choice-user", mainElem);
+
             createPlayersChoicesItems(computer1, containerChoiceUser);
             createPlayersChoicesItems(computer2, containerChoiceUser);
             createPlayersChoicesItems(user, containerChoiceUser);
-        }, 3000);
+
+        }, 2000);
     }
 
     const saveAndDisplayPlayersChoices = (event) => {
@@ -140,7 +151,6 @@ document.addEventListener("DOMContentLoaded", () => {
         createPlayersChoicesContainer();
     }
 
-    
 });
 
 // let message;
