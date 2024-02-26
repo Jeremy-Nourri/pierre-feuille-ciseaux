@@ -1,100 +1,97 @@
 main {
-    & article {
-        padding: 1.5rem;
-        background-color: var(--container-bg-color);
-        box-shadow:  6px 6px 2px var(--hands-color);
-        border-radius: 10px;
+    
+  & article {
+    padding: 1.5rem;
+    background-color: var(--container-bg-color);
+    box-shadow: 6px 6px 2px var(--hands-color);
+    border-radius: 10px;
 
-        & .container__h2 {
-            height: 90px;
-            clip-path: polygon(100% 0, 100% 79%, 0 95%, 0 17%);
-            background-color: rgb(245, 207, 19);
-            display: flex;
-            justify-content: center;
-            align-items: center;
+    & .container__h2 {
+      height: 90px;
+      clip-path: polygon(100% 0, 100% 79%, 0 95%, 0 17%);
+      background-color: rgb(245, 207, 19);
+      display: flex;
+      justify-content: center;
+      align-items: center;
 
-            & h2 {
-                font-weight: 800;
-                font-size: 1rem;
-                color: black;
-                text-align: center;
-                text-decoration: underline;
-                transform: rotate(-3deg);
-            }
-        }
+      & h2 {
+        font-weight: 800;
+        font-size: 1rem;
+        color: black;
+        text-align: center;
+        text-decoration: underline;
+        transform: rotate(-3deg);
+      }
+    }
+  }
+
+  & form {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    & label {
+      display: block;
+      color: var(--primary-text-color);
+      font-weight: 600;
     }
 
-    & form {
-        margin-top: 1rem;
+    & .index-form__container-avatars {
+      width: 80%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      align-content: center;
+      margin: 0.7rem;
+
+      & .container-avatars__div {
+        width: 85px;
+        height: 85px;
         display: flex;
         flex-direction: column;
         align-items: center;
-        
+        margin-bottom: 1.7rem;
+
         & label {
+          width: 85px;
+          height: 85px;
+          background-color: var(--container-bg-color);
+          border-radius: 50%;
+          transition: transform 0.3s ease-in-out;
+
+          & img {
             display: block;
-            color: var(--primary-text-color);
-            font-weight: 600;
+            width: 80px;
+            height: 80px;
+            margin: auto;
+          }
+        }
+        & label:hover {
+          transform: scale(1.1);
+          cursor: pointer;
         }
 
-        & .index-form__container-avatars {
-            width: 80%;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-            align-content: center;
-            margin: 0.7rem;
-            
-            & .container-avatars__div {
-                width: 85px;
-                height: 85px;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                margin-bottom: 1.7rem;
-
-                & label {
-                    width: 85px;
-                    height: 85px;
-                    background-color: var(--container-bg-color);
-                    border-radius: 50%;
-                    transition: transform 0.3s ease-in-out;
-
-                    & img {
-                        display: block;
-                        width: 80px;
-                        height: 80px;
-                        margin: auto;
-                    }
-                }
-                & label:hover {
-                    transform: scale(1.1);
-                    cursor: pointer;
-                }
-
-                & input {
-                    width: 80px;
-                }
-                & input:focus {
-                    outline-style: none;
-                }
-            }
+        & input {
+          width: 80px;
         }
-
+        & input:focus {
+          outline-style: none;
         }
+      }
     }
+  }
+}
 
-    & .message-container {
-        text-align: center;
-        
-        & .message-name {
-            margin-top: 2rem;
-            margin-bottom: 1rem;
-            font-size: 0.8rem;
-            color: var(--primary-text-color);
-            text-align: center;
-            font-weight: 600;
-        }
-    }
+& .message-container {
+  text-align: center;
 
-
+  & .message-name {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-size: 0.8rem;
+    color: var(--primary-text-color);
+    text-align: center;
+    font-weight: 600;
+  }
 }

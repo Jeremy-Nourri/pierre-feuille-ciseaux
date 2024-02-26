@@ -52,9 +52,10 @@ const createElemWithClassAndText = (tag, className, parent, text) => {
 }
 
 
-const saveUserName = () => {
+const saveUserNameAndAvatar = () => {
     user.nickname = document.getElementById("name-user").value;
-    console.log(computer1.avatar);
+    const selectedRadio = document.querySelector('input[name="avatars"]:checked');
+    user.avatar = `./img/${selectedRadio.id}.png`;
 }
 
 
@@ -69,10 +70,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const containerMessage = document.createElement("div");
     containerMessage.classList.add("message-container");
 
+
+    /////////////// Handler Form Submit ///////////////
     formElement.addEventListener("submit", (event) => {
         event.preventDefault();
 
-        saveUserName();
+        saveUserNameAndAvatar();
 
         createElemWithClassAndText("p", "message-name", containerMessage, `Bonjour ${user.nickname} ! Es-tu prêt(e) à jouer ?`);
 
@@ -108,7 +111,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    /////////////// Functions used in the view that displays player choices ///////////////
+    /////////////// Functions used in the view that displays player's choices ///////////////
 
     const createPlayersChoicesItems = (player, containerChoiceUser) => {
         const subContainer = createElemWithClass("div", "container-choice-user__sub", containerChoiceUser);
@@ -137,6 +140,7 @@ document.addEventListener("DOMContentLoaded", () => {
             createPlayersChoicesItems(computer1, containerChoiceUser);
             createPlayersChoicesItems(computer2, containerChoiceUser);
             createPlayersChoicesItems(user, containerChoiceUser);
+            createElemWithClassAndText("button", "button-results", containerChoiceUser, "Afficher les résultats")
 
         }, 2000);
     }

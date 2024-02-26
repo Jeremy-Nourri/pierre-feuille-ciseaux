@@ -76,4 +76,8 @@
         width: 80%;
     }
 
+    & .button-results {
+        background-color: lightgray;
+    }
+
 }
