@@ -61,7 +61,11 @@
                 & .div-avatar-icon__elem {
                     font-size: 0.6rem;
                     font-weight: 600;
-                }    
+                }
+                
+                & .div-avatar-icon__name {
+                    font-weight: 600;
+                }
             }
         }
     }
@@ -78,6 +82,15 @@
 
     & .button-results {
         background-color: lightgray;
+    }
+
+    & .message {
+        width: 60%;
+        padding: 0.8rem;
+        margin: auto;
+        margin-bottom: 0.8rem;
+        font-weight: 700;
+        background-color: #E0B703;
     }
 
 }
