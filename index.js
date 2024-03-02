@@ -88,8 +88,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const createUserChoicePage = () => {
         const articleElem = document.querySelector("article");
 
-        articleElem.remove();
-        formContainer.remove();
+        if (articleElem) {
+            articleElem.remove();
+            formContainer.remove();
+        } else {
+            document.querySelector(".container-choice-user").remove();
+        }
 
         const containerChoiceUser = createElemWithClass("div", "container-choice-user", mainElem);
         createElemWithClassAndText("p", "container-choice-user__name", containerChoiceUser, user.nickname);
@@ -162,7 +166,7 @@ document.addEventListener("DOMContentLoaded", () => {
         avatarPlayer.setAttribute("src", player.avatar);
     
         const iconName = createElemWithClass("div", "div-icon-name", containerAvatarIcon);
-        createElemWithClassAndText("p", "div-avatar-icon__score", iconName, player.score);
+        createElemWithClassAndText("span", "div-avatar-icon__score", iconName, player.score);
     }
 
     const createResultsPage = () => {
@@ -175,7 +179,8 @@ document.addEventListener("DOMContentLoaded", () => {
         createResultsItem(computer1, containerResults);
         createResultsItem(computer2, containerResults);
         createResultsItem(user, containerResults);
-        createElemWithClassAndText("button", "button-results", containerResults, "Afficher les résultats");
+        const buttonNextRound = createElemWithClassAndText("button", "button-results", containerResults, "Manche suivante");
+        buttonNextRound.addEventListener("click", createUserChoicePage);
     }
 
     let message;

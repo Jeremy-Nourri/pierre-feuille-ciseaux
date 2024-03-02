@@ -1,6 +1,6 @@
 .container-choice-user {
     width: 70%;
-    margin: auto;
+    margin: 1rem auto;
     padding: 20px;
     text-align: center;
     background-color: var(--container-bg-color);
@@ -10,17 +10,21 @@
     & .container-choice-user__name {
         font-weight: 700;
     }
+    & .container-choice-user__info {
+        font-weight: 700;
+        margin-bottom: 1rem;
+    }
 
     & .container-choice-user__sub {
         margin-bottom: 0.8rem;
         
         & .sub__icon {
-            width: 110px;
             height:100px;
             margin: 0 auto;
-            padding: 0.5rem;
+            padding: 1.2rem;
             font-size: 5rem;
-            text-align: center;
+            border-radius: 10px;
+            transition: background-color 0.3s;
         }
         
         & .sub__icon:hover {
@@ -32,7 +36,7 @@
             cursor: default;
         }
         & .sub__name-elem {
-            font-size: 0.8rem;
+            font-size: 0.6rem;
             font-weight: 700;
             color: var(--name-color);
             margin-top: 0;
@@ -48,8 +52,8 @@
             & .div-icon-name {
                 display: flex;
                 flex-direction: column;
+                align-items: center;
                 justify-content: center;
-                align-content: center;
                 width: 70px;
                 height: 70px;
                 background-color: rgb(201, 199, 199);
@@ -57,14 +61,20 @@
     
                 & .div-avatar-icon__icon {
                     font-size: 2rem;
+                    margin-top: 0.2rem;
                 }
                 & .div-avatar-icon__elem {
+                    margin: 0;
                     font-size: 0.6rem;
                     font-weight: 600;
                 }
                 
                 & .div-avatar-icon__name {
                     font-weight: 600;
+                }
+                & .div-avatar-icon__score {
+                    font-size: 0.8rem;
+                    color: black;
                 }
             }
         }
@@ -86,11 +96,13 @@
 
     & .message {
         width: 60%;
-        padding: 0.8rem;
+        font-size: 0.8rem;
+        padding: 1rem;
         margin: auto;
         margin-bottom: 0.8rem;
         font-weight: 700;
         background-color: #E0B703;
+        border-radius: 10px;
     }
 
 }
