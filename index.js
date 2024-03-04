@@ -58,6 +58,12 @@ const saveUserNameAndAvatar = () => {
     user.avatar = `./img/${selectedRadio.id}.png`;
 }
 
+const resetScore = () => {
+    computer1.score = 0;
+    computer2.score = 0;
+    user.score = 0;
+}
+
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -76,8 +82,9 @@ document.addEventListener("DOMContentLoaded", () => {
         event.preventDefault();
 
         saveUserNameAndAvatar();
+        resetScore();
 
-        createElemWithClassAndText("p", "message-name", containerMessage, `Bonjour ${user.nickname} ! Es-tu prêt(e) à jouer ?`);
+        createElemWithClassAndText("p", "message-name", containerMessage, `Bonjour ${user.nickname} !  Êtes-vous prêts à jouer ?`);
 
         const buttonPlay = createElemWithClassAndText("button", "message-button", containerMessage, "Commencer une partie");
         buttonPlay.addEventListener("click", createUserChoicePage);
@@ -97,7 +104,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const containerChoiceUser = createElemWithClass("div", "container-choice-user", mainElem);
         createElemWithClassAndText("p", "container-choice-user__name", containerChoiceUser, user.nickname);
-        createElemWithClassAndText("p", "container-choice-user__info", containerChoiceUser, "Sélectionne un élément");
+        createElemWithClassAndText("p", "container-choice-user__info", containerChoiceUser, "Sélectionnez un élément");
 
         for (let i = 0; i < 3; i++) {
             const subContainer = createElemWithClass("div", "container-choice-user__sub", containerChoiceUser);
@@ -172,18 +179,61 @@ document.addEventListener("DOMContentLoaded", () => {
     const createResultsPage = () => {
         
         compareChoices();
+
         document.querySelector(".container-choice-user").remove();
         const containerResults = createElemWithClass("div", "container-choice-user", mainElem);
 
-        createElemWithClassAndText("p", "message", containerResults, message);
-        createResultsItem(computer1, containerResults);
-        createResultsItem(computer2, containerResults);
-        createResultsItem(user, containerResults);
-        const buttonNextRound = createElemWithClassAndText("button", "button-results", containerResults, "Manche suivante");
-        buttonNextRound.addEventListener("click", createUserChoicePage);
+        if (computer1.score >= 5 || computer2.score >= 5 || user.score >= 5) {
+           findWinner(containerResults);
+        }
+        else {
+            createElemWithClassAndText("p", "message", containerResults, message);
+            createResultsItem(computer1, containerResults);
+            createResultsItem(computer2, containerResults);
+            createResultsItem(user, containerResults);
+            const buttonNextRound = createElemWithClassAndText("button", "button-results", containerResults, "Manche suivante");
+            buttonNextRound.addEventListener("click", createUserChoicePage);
+        }
     }
 
     let message;
+
+    const findWinner = (containerResults) => {
+        let winner;
+        if (computer1.score === 5 && computer2.score === 5) {
+            message = `Match nul entre ${computer1.nickname} et ${computer2.nickname} !`;
+            createResultsItem(computer1, containerResults);
+            createResultsItem(computer2, containerResults);
+        }
+        else if (computer1.score === 5 && user.score === 5) {
+            message = `Match nul entre ${computer1.nickname} et ${user.nickname} !`;
+            createResultsItem(computer1, containerResults);
+            createResultsItem(user, containerResults);
+        }
+        else if (computer2.score === 5 && user.score === 5) {
+            message = `Match nul entre ${computer2.nickname} et ${user.nickname} !`;
+            createResultsItem(computer2, containerResults);
+            createResultsItem(user, containerResults);
+        }
+        else if (computer1.score >= 5) {
+            message = `${computer1.nickname} a ${computer1.score} points.\n Elle gagne la partie !`;
+            winner = computer1;
+        } 
+        else if (computer2.score >= 5) {
+            message = `${computer2.nickname} a ${computer2.score} points.\n Il gagne la partie !`;
+            winner = computer2;
+        }
+        else {
+            message = `Vous avez ${computer2.score} points.\n Vous gagnez la partie !`;
+            winner = user;
+        }
+        createElemWithClassAndText("p", "message", containerResults, message);
+        createResultsItem(winner, containerResults);
+        const buttonNextRound = createElemWithClassAndText("button", "button-results", containerResults, "Commencer une nouvelle partie");
+        buttonNextRound.addEventListener("click", () => {
+            window.location.href = "index.html";
+        })
+    }
 
     const compareChoices = () => {
         
