@@ -21,7 +21,7 @@
         & .sub__icon {
             height:100px;
             margin: 0 auto;
-            padding: 1.2rem;
+            padding: 0.3rem;
             font-size: 5rem;
             border-radius: 10px;
             transition: background-color 0.3s;
@@ -44,7 +44,7 @@
         & .sub__div-avatar-icon {
             display: flex;
             justify-content: center;
-            margin-top: 1rem;
+            margin-top: 0.3rem;
 
             & .avatar{
                 width: 120px;
